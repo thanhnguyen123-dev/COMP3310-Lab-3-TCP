@@ -66,7 +66,7 @@ def serverLoop(sock):
     while True:
         try:
             request = readLine(sock)
-            if request is None:
+            if request is None or request == "BYE":
                 break
             print("Server received", request)
             handleRequest(sock, request)
@@ -79,10 +79,23 @@ def serverLoop(sock):
 
 def handleRequest(sock, message):
     """Respond to one client request"""
+    # task 6
+    if message == "it":
+        writeLine(sock, "")
+        return
+    
+    # task 7
+    if message == "ni":
+        for i in range(1, 4):
+            writeLine(sock, f"line {i} of 3")
+        writeLine(sock, "")
+        return
+
+
     reply = "ACK: " + message
     print("Server sending reply", reply)
     writeLine(sock, reply)
-    # slowSend(sock, reply)
+    writeLine(sock, "")
     
 
 

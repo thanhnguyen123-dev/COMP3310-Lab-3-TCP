@@ -41,6 +41,7 @@ def readLine(sock):
             break
     # Back slash replace won't raise exception on illegal char sequence
     txt = inData.decode('utf-8', 'backslashreplace')
+    txt = txt.rstrip('\n').rstrip()
     return txt
 
 

@@ -54,8 +54,13 @@ def sendRequest(sock, request):
 
 def readReply(sock):
     """Read and print server response"""
-    reply = readLine(sock)
-    print(reply)
+    while True:
+        reply = readLine(sock)
+        if reply is None:
+            return
+        if reply == "":
+            break
+        print(reply)
 
 
 def processArgs(argv):
